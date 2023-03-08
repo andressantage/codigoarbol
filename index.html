@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="prism.css">
+	<script src="prism.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fair-style-button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 2px solid white;
+            color: white;
+            background-color: #00bb2d;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .fair-style-but {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 2px solid white;
+            color: white;
+            background-color: blue;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+        <code class="language-python">
+import matplotlib.pyplot as plt
+import numpy as np
+import random
+
+
+
+def tree(x, y, angle, depth, branch_length):
+    if depth == 0:
+        return
+    
+    
+    x2 = x + int(np.cos(np.radians(angle)) * branch_length)
+    y2 = y + int(np.sin(np.radians(angle)) * branch_length)
+    plt.plot([x, x2], [y, y2], color='k', linewidth=2.0)
+
+    tree(x2, y2, angle - 60/random.uniform(2, 5), depth - 1, branch_length/random.uniform(1.1, 2))
+    tree(x2, y2, angle + 60/random.uniform(2, 5), depth - 1, branch_length/random.uniform(1.1, 2))
+    tree(x2, y2, angle/random.uniform(2, 5), depth - 1, branch_length//random.uniform(1.1, 2))
+
+plt.figure(figsize=(8,8))
+plt.axis('equal')
+plt.axis('off')
+
+tree(300, 800, 90, 10, 100)
+
+plt.show()
+        </code>
+    </pre>
+</body>
+</html>
